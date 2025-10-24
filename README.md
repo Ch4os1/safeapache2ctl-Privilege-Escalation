@@ -9,8 +9,8 @@ This exploit leverages a path validation vulnerability in `safeapache2ctl` to lo
 
 ### Vulnerability Analysis
 
-##### Core Vulnerability: Flawed Path Validation
-The `safeapache2ctl` binary contains a vulnerable function `is_unsafe_line()` with improper path sanitization:
+#### Core Vulnerability: Flawed Path Validation
+- The `safeapache2ctl` binary contains a vulnerable function `is_unsafe_line()` with improper path sanitization:
 
 ```bash
 // Flawed validation logic
