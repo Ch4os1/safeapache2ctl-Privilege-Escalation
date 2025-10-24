@@ -3,13 +3,11 @@
 - Taking notes for future references, referenced blog post on Guardian by [HYH](https://www.hyhforever.top/posts/2025/09/htb-guardian/).
 
 
-####  Overview
+###  Overview
 This exploit leverages a path validation vulnerability in `safeapache2ctl` to load a malicious shared library with root privileges, resulting in persistent privilege escalation through `SUID` binary creation.
 
 
-### Vulnerability Analysis
-
-#### Core Vulnerability: Flawed Path Validation
+### Vulnerability Analysis - Flawed Path Validation
 - The `safeapache2ctl` binary contains a vulnerable function `is_unsafe_line()` with improper path sanitization:
 
 ```bash
@@ -28,10 +26,8 @@ if (local_1018[0] == '/') {  // Only check absolute paths
 - Actual Behavior: Any file in the allowed directory can be referenced, including malicious shared libraries
 - Bypass Method: Use absolute paths within the trusted directory that point to malicious content
 
-### Attack Vectors
-
-#### Exploitable Directives
-The vulnerability affects three Apache configuration directives:
+### Attack Vectors - Exploitable Directives
+- The vulnerability affects three Apache configuration directives:
 - `Include` - File inclusion
 - `IncludeOptional` - Optional file inclusion
 - `LoadModule` ⭐ Most Dangerous - Shared library loading
